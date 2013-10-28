@@ -6,15 +6,22 @@
 
 function cdfind() {
 	goto=$@;
-	lall=$(find . -name "$goto" -type d -readable 2>/dev/null );
-	if [[ $? == 0 ]]; then 
-		cd "$lall";
-		return;
+	IFS='
+'
+	lall=( $(find . -iname "$goto*" -type d -readable 2>/dev/null) )
+	
+	if [[ ${#lall[*]} == 0 ]]; then 
+		echo "Aucune valeur trouvée";
+	elif [[ ${#lall[*]} == 1 ]]; then 
+		cd "${lall[0]}";
+	else
+		for i in $(seq 1 $((${#lall[*]})) ); do
+			echo "[$i] - ${lall[$(( $i - 1 ))]}";
+		done
+		read -p "#?" i
+		cd "${lall[ $(( $i - 1 )) ]}"
 	fi
-	select config in "$lall"; do  
-		cd "$config";   
-		return; 
-	done
+	IFS=' '
 }
 
 # goto and up directory
