@@ -39,3 +39,8 @@ function up() {
 #usefull commande : try :
 cd -
 # into you shell
+# Exemple : 
+# cd Document/test/try/imhere/fun
+# then cd 
+# and cd -
+# you are going to go into "Document/test/try/imhere/fun" 
