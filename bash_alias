@@ -1,1 +1,9 @@
 alias tree="find . | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/ /'\'' -e '\''s/-/|/'\' "
+
+# When to much of vim
+alias :q='read -s -n1 -p "Do you realy want to quit the shell? [y]|n "; if [ "$REPLY" = y -o "$REPLY" = Y -o "$REPLY" = " " -o "$REPLY" = "" ]; then exit; else echo; unset REPLY; fi'
+
+alias which="type -all"
+alias reload_bash="source ~/.bashrc" # recharger le ~/.bashrc
+alias cp='rsync -a --stats --progress'
+alias ports='lsof -i -n -P'
